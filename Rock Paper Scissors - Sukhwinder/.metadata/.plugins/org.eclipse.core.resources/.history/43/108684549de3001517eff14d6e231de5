@@ -1,0 +1,12 @@
+
+public class Calculate {
+	
+	private Shapes s;
+	private Player p1;
+	private Player p2
+	
+	public Calculate(){
+		
+	}
+	
+}

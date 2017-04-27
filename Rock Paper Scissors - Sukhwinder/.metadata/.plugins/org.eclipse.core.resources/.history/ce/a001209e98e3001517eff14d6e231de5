@@ -1,0 +1,14 @@
+import java.util.concurrent.BlockingQueue;
+
+public class Queue {
+	
+	private boolean isSet = false;
+	private BlockingQueue<Player> queue;
+	
+	public Queue(BlockingQueue<Player> queue){
+		this.queue = queue;
+	}
+	
+	
+	
+}

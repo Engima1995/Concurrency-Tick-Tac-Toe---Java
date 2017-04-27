@@ -1,0 +1,48 @@
+public class Player implements Runnable{
+	
+	private int id;
+	private Queue queue;
+	private Shapes rps;
+	private int win, lose, draw;
+	private int turns;
+	private int NTURNS;
+	
+	public Player(int id, int NTURNS, Queue queue){
+		this.id = id;
+		this.NTURNS = NTURNS;
+		this.queue = queue;
+		win = 0;
+		lose = 0;
+		draw = 0;
+		turns = 0;
+	}
+	
+	@Override
+	public void run() {
+		
+		for(int i=1; i<=NTURNS; i++){
+			try {
+				turns++;
+				rps = this.getShape();
+				queue.putMVar(this);
+				System.out.print("Player " + id + "(" + rps + ")   ");
+				Thread.sleep(1000);
+				System.out.println("");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("Player " + id + " Wins: " + win + " Draws: " + draw + " Losses: " + lose);
+		
+	}
+	
+	public int getPlayerId(){
+		return id;
+	}
+	
+	public Shapes getShape(){
+		return rps.randomShape();
+	}
+
+}

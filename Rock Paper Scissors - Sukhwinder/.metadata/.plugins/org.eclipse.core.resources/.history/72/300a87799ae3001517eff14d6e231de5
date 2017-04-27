@@ -1,0 +1,33 @@
+public class Referee implements Runnable{
+	
+	private Queue queue;
+	private Communicate comm;
+	private Player[] players;
+	
+	public Referee(Queue queue, Communicate comm){
+		
+		this.queue = queue;
+		this.comm = comm;
+		players = new Player[2];
+		
+	}
+
+	@Override
+	public void run() {
+	
+			try {
+				for(int i=0; i<2; i++){
+					players[i] = comm.takeMessage();
+					if(queue.queueSize() != 2){
+						queue.queueAdd(players[i]);
+						System.out.println("Player Added");
+					}
+				}
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+	}
+				
+}

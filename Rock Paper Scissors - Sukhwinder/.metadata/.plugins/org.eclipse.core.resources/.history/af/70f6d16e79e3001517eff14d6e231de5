@@ -1,0 +1,29 @@
+public class Referee implements Runnable{
+	
+	private Queue queue;
+	private MVar<Integer> result;
+	private Player[] players;
+	
+	public Referee(Queue queue, MVar<Integer> result){
+		
+		this.queue = queue;
+		this.result = result;
+		players = new Player[2];
+		
+	}
+
+	@Override
+	public void run() {
+		
+		for(int i=0; i<2; i++){
+			try {
+				players[i] = queue.takeMVar();
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+				
+}

@@ -1,0 +1,9 @@
+
+public class Calculate {
+	
+	private Shapes s;
+	private Player p;
+	
+	
+	
+}

@@ -1,0 +1,42 @@
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class Game {
+	
+	public static void main(String[] args) throws InterruptedException, ExecutionException{
+		
+		Queue queue = new Queue(new ArrayBlockingQueue<Player>(2));
+		Communicate c = new Communicate();
+		int NTURNS = 1;
+		int NPLAYERS = 10;
+		int even;
+		
+		ScheduledExecutorService player = Executors.newScheduledThreadPool(NPLAYERS);
+		ExecutorService referee = Executors.newSingleThreadExecutor();
+		
+		even = NPLAYERS % 2;
+		
+		Future<?> fr = referee.submit(new Referee(queue, c));
+			
+		if(NTURNS == 1 && even != 0){
+			System.out.println("There are odd number of players and only 1 turn.");
+			System.out.println("Try changing NPLAYERS to a even number to play.");
+		}else{
+			for(int i = 0; i<NPLAYERS; i++){
+				player.schedule(new Player(i+1, NTURNS, c), 100, TimeUnit.SECONDS);
+			}
+		}
+		
+		player.shutdown();
+		player.awaitTermination(100, TimeUnit.MILLISECONDS);
+		
+		
+		
+	}
+	
+}

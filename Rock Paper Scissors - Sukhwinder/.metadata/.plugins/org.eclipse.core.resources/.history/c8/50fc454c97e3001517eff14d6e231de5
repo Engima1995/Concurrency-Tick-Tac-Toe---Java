@@ -1,0 +1,8 @@
+
+public class Communicate {
+	
+	private Shapes shape;
+	private Player p;
+	private MVar<Integer> result;
+	
+}

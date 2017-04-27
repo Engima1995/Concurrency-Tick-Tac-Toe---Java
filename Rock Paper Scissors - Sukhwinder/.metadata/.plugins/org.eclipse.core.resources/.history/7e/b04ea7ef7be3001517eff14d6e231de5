@@ -1,0 +1,26 @@
+public class Referee implements Runnable{
+	
+	private Queue queue;
+	private Player p;
+	private Player[] players;
+	
+	public Referee(Queue queue, Player p){
+		
+		this.queue = queue;
+		this.p = p;
+		players = new Player[2];
+		
+	}
+
+	@Override
+	public void run() {
+	
+		try {
+				System.out.println("Referee Contains " + queue.getBlockingQueue().contains(p));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+				
+}

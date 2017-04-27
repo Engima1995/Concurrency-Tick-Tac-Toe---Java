@@ -1,0 +1,38 @@
+
+public class Calculate {
+	
+	private Shapes s;
+	private Player p1;
+	private Player p2;
+	
+	public Calculate(Player p1, Player p2){
+		this.p1 = p1;
+		this.p2 = p2;
+	}
+	
+	public int result(){
+		
+		if(p1.getShape() == s.PAPER && p2.getShape() == s.PAPER){
+			return 3;
+		}
+		
+		if(p1.getShape() == s.ROCK && p2.getShape() == s.ROCK){
+			return 3;
+		}
+		
+		if(p1.getShape() == s.SCISSORS && p2.getShape() == s.SCISSORS){
+			return 3;
+		}
+		
+		if(p1.getShape() == s.ROCK && p2.getShape() == s.PAPER){
+			return 2;
+		}
+		
+		if(p1.getShape() == s.PAPER && p2.getShape() == s.ROCK){
+			return 1;
+		}
+		
+		return 0;
+	}
+	
+}

@@ -1,0 +1,22 @@
+
+public class Communicate {
+	
+	private Player p;
+	
+	public Communicate(){
+		
+	}
+	
+	public synchronized void putMessage(){
+		
+		
+		
+	}
+	
+	public synchronized Player takeMessage(){
+		
+		return p;
+		
+	}
+	
+}

@@ -1,0 +1,20 @@
+
+public class Communicate {
+	
+	private Player p;
+	
+	public synchronized void putMessage(Player p) throws InterruptedException{
+		
+		this.p = p;
+		wait();
+		
+	}
+	
+	public synchronized Player takeMessage(){
+		
+		notify();
+		return p;
+		
+	}
+	
+}

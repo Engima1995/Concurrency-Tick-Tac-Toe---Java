@@ -1,0 +1,14 @@
+
+public class Communicate {
+	
+	private Player p;
+	
+	public Communicate(){
+		
+	}
+	
+	public synchronized Player take(){
+		return p;
+	}
+	
+}

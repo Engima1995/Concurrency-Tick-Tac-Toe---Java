@@ -1,0 +1,79 @@
+
+public class Calculate {
+	
+	private Shapes s;
+	private Player p1;
+	private Player p2;
+	private boolean isSet = false;
+	
+	public Calculate(Player p1, Player p2){
+		this.p1 = p1;
+		this.p2 = p2;
+	}
+	
+	public synchronized int result() throws InterruptedException{
+		
+		while(isSet){
+			wait();
+		}
+		
+		if(p1.getShape() == s.PAPER && p2.getShape() == s.PAPER){
+			isSet = true;
+			notify();
+			return 3;
+		}
+		
+		if(p1.getShape() == s.ROCK && p2.getShape() == s.ROCK){
+			isSet = true;
+			notify();
+			return 3;
+		}
+		
+		if(p1.getShape() == s.SCISSORS && p2.getShape() == s.SCISSORS){
+			isSet = true;
+			notify();
+			return 3;
+		}
+		
+		if(p1.getShape() == s.ROCK && p2.getShape() == s.PAPER){
+			isSet = true;
+			notify();
+			return 2;
+		}
+		
+		if(p1.getShape() == s.PAPER && p2.getShape() == s.ROCK){
+			isSet = true;
+			notify();
+			return 1;
+		}
+		
+		if(p1.getShape() == s.ROCK && p2.getShape() == s.SCISSORS){
+			isSet = true;
+			notify();
+			return 1;
+		}
+		
+		if(p1.getShape() == s.SCISSORS && p2.getShape() == s.ROCK){
+			isSet = true;
+			notify();
+			return 2;
+		}
+		
+		if(p1.getShape() == s.SCISSORS && p2.getShape() == s.PAPER){
+			isSet = true;
+			notify();
+			return 1;
+		}
+		
+		if(p1.getShape() == s.PAPER && p2.getShape() == s.SCISSORS){
+			isSet = true;
+			notify();
+			return 2;
+		}
+		
+		isSet = true;
+		notify();
+		return 0;
+	}
+	
+}

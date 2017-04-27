@@ -1,0 +1,30 @@
+import java.util.concurrent.ArrayBlockingQueue;
+
+public class Game {
+	
+	public static void main(String[] args) throws InterruptedException{
+		
+		Queue queue = new Queue(new ArrayBlockingQueue<Player>(2));
+		Communicate c = new Communicate();
+		final int NTURNS = 5;
+		final int NPLAYERS = 3;
+		
+		Thread[] parray = new Thread[NPLAYERS];
+		Thread ref = new Thread(new Referee(queue, c));
+		
+		ref.start();
+		
+		for(int i = 0; i<NPLAYERS; i++){
+			parray[i] = new Thread(new Player(i+1, NTURNS, c));
+			parray[i].start();
+		}
+
+		for(int i = 0; i<NPLAYERS; i++){
+			parray[i].join();
+		}
+		
+		ref.interrupt();
+		
+	}
+	
+}

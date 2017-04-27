@@ -1,0 +1,25 @@
+
+public class Communicate {
+	
+	private Player p;
+	private boolean isSet = false;
+	
+	public Communicate(){}
+	
+	public synchronized void putMessage(Player p) throws InterruptedException{
+		while(isSet){
+			wait();
+		}
+		isSet = true;
+		this.p = p;
+		
+	}
+	
+	public synchronized Player takeMessage(){
+		
+		notify();
+		return p;
+		
+	}
+	
+}

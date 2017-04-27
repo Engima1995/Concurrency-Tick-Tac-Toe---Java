@@ -1,0 +1,24 @@
+
+public class Communicate {
+	
+	private Player p;
+	private boolean isSet = false;
+	
+	public Communicate(){
+		
+	}
+	
+	public synchronized void putMessage(){
+		
+		
+		
+	}
+	
+	public synchronized Player takeMessage(){
+		
+		notify();
+		return p;
+		
+	}
+	
+}

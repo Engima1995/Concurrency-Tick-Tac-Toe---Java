@@ -1,0 +1,18 @@
+import java.util.concurrent.BlockingQueue;
+
+public class Queue {
+	
+	private BlockingQueue<Player> queue;
+	private Player p;
+	
+	public Queue(BlockingQueue<Player> queue){
+		this.queue = queue;
+	}
+	
+	public void queueAdd(){
+		
+		
+		
+	}
+	
+}

@@ -1,0 +1,30 @@
+
+public class Calculate {
+	
+	private Shapes s;
+	private Player p1;
+	private Player p2;
+	
+	public Calculate(Player p1, Player p2){
+		this.p1 = p1;
+		this.p2 = p2;
+	}
+	
+	public Player result(){
+		
+		if(p1.getShape() == s.PAPER && p2.getShape() == s.PAPER){
+			
+		}
+		
+		if(p1.getShape() == s.ROCK && p2.getShape() == s.ROCK){
+					
+		}
+		
+		if(p1.getShape() == s.SCISSORS && p2.getShape() == s.SCISSORS){
+			
+		}
+		
+		return ;
+	}
+	
+}

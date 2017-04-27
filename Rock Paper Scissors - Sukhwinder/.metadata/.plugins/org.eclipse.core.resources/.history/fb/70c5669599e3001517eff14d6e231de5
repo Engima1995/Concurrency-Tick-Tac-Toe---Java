@@ -1,0 +1,26 @@
+import java.util.concurrent.BlockingQueue;
+
+public class Queue {
+	
+	private BlockingQueue<Player> queue;
+	private Player p;
+	
+	public Queue(BlockingQueue<Player> queue){
+		this.queue = queue;
+	}
+	
+	public void queueAdd(Player p) throws InterruptedException{
+		
+		queue.put(p);
+		
+	}
+	
+	public void queueRemove(){
+		
+	}
+	
+	public int queueSize(){
+		return queue.size();
+	}
+	
+}

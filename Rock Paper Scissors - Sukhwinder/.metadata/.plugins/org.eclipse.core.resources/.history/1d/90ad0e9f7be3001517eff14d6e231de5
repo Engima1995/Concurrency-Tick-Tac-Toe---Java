@@ -1,0 +1,46 @@
+import java.util.concurrent.BlockingQueue;
+
+public class Queue {
+	
+	private boolean isSet = false;
+	private BlockingQueue<Player> queue;
+	
+	public Queue(BlockingQueue<Player> queue){
+		this.queue = queue;
+	}
+	
+	public synchronized void putMVar(Player p) throws InterruptedException{
+		
+		while(isSet){
+			try{
+				wait();
+			}catch(InterruptedException e){}
+		}
+		
+		if(queue.size() == 2){
+			isSet = true;
+		}
+		queue.put(p);
+		notifyAll();
+		
+	}
+	
+	 public synchronized Player takeMVar() throws InterruptedException {
+		 
+		 while(!isSet){
+				try{
+					wait();
+				}catch(InterruptedException e){}
+			}
+			
+			isSet = true;
+			notifyAll();
+			return queue.take();
+		 
+	 }
+	 
+	 public int getSize(){
+		 return queue.size();
+	 }
+	
+}
